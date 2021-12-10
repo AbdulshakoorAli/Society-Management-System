@@ -24,8 +24,9 @@
         }
     if($user!=null && $pass!=null)
     { 
-        $sql = "SELECT * FROM `student` WHERE `student_id` LIKE '$user' AND `Password` LIKE '$pass'";
-        if($result = $mysqli->query($sql))
+        $sql_student = "SELECT * FROM `student` WHERE `student_id` LIKE '$user' AND `Password` LIKE '$pass'";
+        $sql_faculty = "SELECT * FROM `faculty` WHERE `Faculty_id` LIKE '$user' AND `password` LIKE '$pass'";
+        if($result = $mysqli->query($sql_student))
         {
             if($result->num_rows==1)
             {
@@ -36,9 +37,20 @@
             }
             else
             {
-                echo "Invalid Username OR password";
+                $sql_faculty = "SELECT * FROM `faculty` WHERE `Faculty_id` LIKE '$user' AND `password` LIKE '$pass'";                
+                if($result = $mysqli->query($sql_faculty))
+                {
+                    $row=$result->fetch_array();
+                    $_SESSION['username'] = $user;
+                    $result->free_result();
+                    header("location:faculty.php");
+                }
+                else
+                {
+                    echo "Invalid Roll No. OR Password". $mysqli->error;
+                }
             }
-        }
+        }        
     }
 }
 ?>

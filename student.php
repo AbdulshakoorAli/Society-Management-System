@@ -52,7 +52,8 @@
             <tr>
                 <td> <?php echo $row[0] ?>   </td>
                 <td> <?php echo $row[1] ?>   </td>
-                <td> <a href="form.php?s_id=<?php echo  $row[0]?>">Enroll Now</a></td>
+                <td> <a href="All_forms.php?s_id=<?php echo  $row[0]?>">Available FORMS </a></td>
+                
             </tr>
         <?php    
                 }
@@ -60,7 +61,5 @@
         ?>
         </table>
     </section>
-
-
 </body>
 </html>
